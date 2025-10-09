@@ -275,7 +275,83 @@
     line-height: 1.6;
     font-size: 14px;
   }
+   
+ /* ===== WORK EXPERIENCE SECTION ===== */
+.experience {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
 
+.exp-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 24px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.exp-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.exp-card h4 {
+  color: var(--accent);
+  margin-bottom: 6px;
+  font-size: 18px;
+}
+
+.exp-card .exp-date {
+  font-size: 14px;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 10px;
+}
+
+.exp-card p {
+  color: var(--white);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ===== PROJECTS SECTION ===== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.project-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.project-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.project-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.project-card p {
+  padding: 12px 0;
+  background: rgba(15, 21, 32, 0.8);
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 15px;
+}
+
+      
   /* ===== CONTACT SECTION ===== */
   #contact h2 {
     color: var(--accent);
@@ -352,6 +428,8 @@
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
       <a class="cta" href="#contact">Hire Me</a>
     </nav>
@@ -383,7 +461,7 @@
             <div><div class="k">Phone</div><div>+254 793 949 829</div></div>
             <div><div class="k">Email</div><div>horintechie@gmail.com</div></div>
             <div><div class="k">Address</div><div>P.O Box 6 – 00100, Nairobi, Kenya</div></div>
-            <div><div class="k">Education</div><div>BSc. Computer Science</div></div>
+            <div><div class="k">Education</div><div>BSc. Computer Science<br>University of Embu</div></div>
             <div><div class="k">Freelance</div><div>Available</div></div>
           </div>
 
@@ -422,6 +500,65 @@
       </div>
     </section>
 
+    <!-- ===== WORK EXPERIENCE SECTION ===== -->
+<section id="experience">
+  <h2 style="color: var(--accent); margin-bottom: 20px;">Work Experience</h2>
+  <div class="experience">
+    <div class="exp-card">
+      <h4>Freelance Graphic Designer</h4>
+      <span class="exp-date">Jan 2023 – present</span>
+        <p>Creates user-friendly and visually appealing designs that enhance user experience.</p>
+        <p>Conducts client presentations, gathers feedback, and refines design concepts to meet expectations.</p>
+    </div>
+    <div class="exp-card">
+      <h4>Full-stack developer - Zedah Property Solutions</h4>
+      <span class="exp-date">July 2025 – September 2025</span>
+      <p>Implemented a fully functional system that facilitates quick and reliable service delivery.</p>
+      <p>Refined existing functionalities to enhance and ease customer interactivity with the system.</p>
+    </div>
+    <div class="exp-card">
+      <h4>IT Assistant - Jeremiah Nyagah National Polytechnic</h4>
+      <span class="exp-date">May 2024 – August 2024</span>
+        <p>• Resolved network issues and ensured smooth system operations.</p>
+        <p>• Trained learners on networking, software installation, and UI design using Visual Basic.</p>
+        <p>• Provided guidance on database management and data communication.</p>
+        <p>• Demonstrated strong leadership and managerial skills in handling IT projects.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROJECTS SECTION ===== -->
+<section id="projects">
+  <h2 style="color: var(--accent); margin-bottom: 20px;">My Projects</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <img src="proj1.png" alt="Project 1">
+      <p>Property Management System</p>
+    </div>
+    <div class="project-card">
+      <img src="proj2.png" alt="Project 2">
+      <p>Sales Manager</p>
+    </div>
+    <div class="project-card">
+      <img src="proj3.png" alt="Project 3">
+      <p>Automated Sales Receipt Generator</p>
+    </div>
+    <div class="project-card">
+      <img src="proj4.png" alt="Project 4">
+      <p>Data Analyzer and Visualizer</p>
+    </div>
+    <div class="project-card">
+      <img src="proj5.png" alt="Project 5">
+      <p>Space Game</p>
+    </div>
+    <div class="project-card">
+      <img src="proj6.png" alt="Project 5">
+      <p>Graphic Designs</p>
+    </div>
+  </div>
+</section>
+  
+      
     <section id="contact">
       <h2>Contact</h2>
       <p>Email: <strong>horintechie@gmail.com</strong></p>
@@ -456,3 +593,4 @@
   </script>
 </body>
 </html>
+
