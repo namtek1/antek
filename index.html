@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amos Nyabwari Portfolio</title>
+  <style>
+    :root {
+      --navy: #0b1d3b;
+      --orange: #e07b39;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', sans-serif; scroll-behavior: smooth; }
+    body { background-color: var(--navy); color: var(--white); }
+    a { text-decoration: none; }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: var(--navy);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 0;
+      z-index: 1000;
+    }
+    nav .logo img { height: 60px; margin-bottom: 10px; }
+    nav .nav-links { display: flex; gap: 15px; }
+    nav a { color: var(--orange); font-weight: bold; padding: 5px 10px; transition: color 0.3s; }
+    nav a.active { color: var(--white); border-bottom: 2px solid var(--orange); border-radius: 2px; }
+    nav a:hover { color: var(--white); }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 50px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+    }
+    section.visible { opacity: 1; transform: translateY(0); }
+    section h2 { font-size: 3rem; margin-bottom: 20px; color: var(--orange); }
+    section p { max-width: 700px; line-height: 1.6; color: var(--white); }
+
+    /* Home */
+    #home {
+      background: url('back.jpg') center/cover no-repeat;
+      position: relative;
+    }
+    #home::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(11, 29, 59, 0.7);
+      z-index: 0;
+    }
+    #home .home-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1200px;
+      flex-wrap: nowrap;
+      position: relative;
+      z-index: 1;
+    }
+    #home .home-text { flex:1; min-width:300px; padding:20px; text-align:left; }
+    #home .home-image { flex:1; min-width:300px; display:flex; justify-content:center; padding:20px; }
+    #home .home-image img { max-width:100%; border-radius:15px; border:3px solid var(--orange); }
+
+    /* Experience & Proficiency */
+    .skills-container { margin-top: 20px; max-width: 700px; margin:auto; }
+    .skill { margin-bottom:20px; text-align:left; }
+    .skill h3 { color: var(--orange); margin-bottom:5px; }
+    .skill-bar { width: 100%; height: 25px; background-color: #101f45; border-radius: 10px; overflow: hidden; }
+    .skill-fill { height: 100%; width: 0; background-color: var(--orange); border-radius: 10px; transition: width 2s ease; }
+
+    /* Projects */
+    .projects-container { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; margin-top:30px; }
+    .project-card { background-color: #101f45; border: 2px solid var(--orange); border-radius: 10px; width: 250px; padding: 20px; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; }
+    .project-card:hover { transform: translateY(-10px); box-shadow: 0 0 20px var(--orange); }
+    .project-card h3 { color: var(--orange); margin-bottom:10px; }
+    .project-card p { color: var(--white); font-size:0.9rem; }
+
+    /* Buttons */
+    .btn { display:inline-block; padding:10px 25px; margin-top:20px; color: var(--navy); background-color: var(--orange); border:none; border-radius:5px; font-weight:bold; cursor:pointer; transition:0.3s; }
+    .btn:hover { background-color: var(--white); color: var(--navy); }
+
+    /* Contact */
+    #contact .contact-container { max-width:700px; margin:auto; text-align:center; }
+    #contact form { display:flex; flex-direction:column; gap:15px; margin-top:20px; }
+    #contact input, #contact textarea { padding:10px; border-radius:5px; border:2px solid var(--orange); background-color:#0b1d3b; color: var(--white); font-size:1rem; }
+    #contact input::placeholder, #contact textarea::placeholder { color:#ccc; }
+    #contact .contact-buttons { display:flex; gap:20px; flex-wrap:wrap; justify-content:center; margin-top:15px; }
+
+    /* Hobbies */
+    #hobbies { background-color:#101f45; text-align:center; display:flex; flex-direction:column; align-items:center; padding:50px 20px; }
+    #hobbies h2 { margin-bottom:20px; }
+    #hobbies .hobby-list { display:flex; gap:20px; flex-wrap:wrap; justify-content:center; }
+    #hobbies .hobby { background-color: #0b1d3b; padding:15px 25px; border-radius:10px; border:2px solid var(--orange); font-weight:bold; transition:0.3s; }
+    #hobbies .hobby:hover { background-color: var(--orange); color: var(--navy); cursor:default; }
+
+    footer { background-color: #101f45; text-align:center; padding:10px; position: relative; bottom:0; width:100%; color: #ccc; font-size:0.9rem; }
+
+    /* Section Colors */
+    #experience { background-color:#101f45; text-align:left; }
+    #projects { background-color:var(--navy); }
+    #contact { background-color:#101f45; }
+
+    @media(max-width:900px){
+      #home .home-container { flex-direction: column; text-align:center; }
+      #home .home-text { text-align:center; }
+    }
+    @media(max-width:768px){ .projects-container { flex-direction:column; align-items:center; } }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-links">
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#experience" class="nav-link">Experience</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Home -->
+  <section id="home">
+    <div class="home-container">
+      <div class="home-text">
+          <div class="home-image">
+        <img src="Amos.jpg" alt="Amos Nyabwari">
+      </div>
+        <p><strong>Hi, I'm Amos Nyabwari.</strong></p>
+        <p>A Professional Computer Scientist specialized in software development, Graphic Design, and Data Analysis. I am also a Cybersecurity enthusiast and Computing tutor.</p>
+        <p><strong>Medical Passionate and Law student enthusiast </strong></p>
+        <p>Founder of <strong>AllSpark Solutions</strong> and co-founder of <strong>SmartLearn e-learning platform.</strong>Experienced in leading diverse projects and freelancing.</p>
+        <br><br>
+        <a href="#projects" class="btn">See Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience & Proficiency -->
+  <section id="experience">
+    <div>
+      <h2>Experience & Proficiency</h2>
+      <div class="skills-container">
+        <div class="skill"><h3>Python Programming</h3><div class="skill-bar"><div class="skill-fill" data-fill="90%"></div></div></div>
+        <div class="skill"><h3>R Programming</h3><div class="skill-bar"><div class="skill-fill" data-fill="85%"></div></div></div>
+        <div class="skill"><h3>Web Development (HTML/CSS/JS/PHP)</h3><div class="skill-bar"><div class="skill-fill" data-fill="80%"></div></div></div>
+        <div class="skill"><h3>Graphic Design</h3><div class="skill-bar"><div class="skill-fill" data-fill="95%"></div></div></div>
+        <div class="skill"><h3>Statistical Data Analysis</h3><div class="skill-bar"><div class="skill-fill" data-fill="90%"></div></div></div>
+        <div class="skill"><h3>Project Management</h3><div class="skill-bar"><div class="skill-fill" data-fill="80%"></div></div></div>
+        <div class="skill"><h3>Leadership</h3><div class="skill-bar"><div class="skill-fill" data-fill="90%"></div></div></div>
+        <div class="skill"><h3>Tutoring</h3><div class="skill-bar"><div class="skill-fill" data-fill="79%"></div></div></div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <div>
+      <h2> My Projects</h2>
+      <div class="projects-container">
+        <div class="project-card"><h3>Zedah Real Estate Project</h3><p>A full-stack real estate project.</p></div>
+        <div class="project-card"><h3>Disease Predictor System</h3><p>A predictive health system using data analytics.</p></div>
+        <div class="project-card"><h3>SmartLearn E-learning Platform</h3><p>Co-founded an interactive learning platform.</p></div>
+        <div class="project-card"><h3>DaVi Application</h3><p>An application for streamlined services.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hobbies -->
+  <section id="hobbies">
+    <h2>Hobbies</h2>
+    <div class="hobby-list">
+      <div class="hobby">Playing badminton</div>
+      <div class="hobby">Table tennis</div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="contact-container">
+      <h2>Contact Me</h2>
+      <form id="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <div class="contact-buttons">
+          <button type="submit" class="btn">Send Email</button>
+          <a href="https://wa.me/254793949829" target="_blank" class="btn">WhatsApp</a>
+        </div>
+      </form>
+      
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="footer">
+    &copy; <span id="year"></span> Antek DevOps. All rights reserved.
+  </footer>
+
+  <script>
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.2 });
+    sections.forEach(section => observer.observe(section));
+
+    const navLinks = document.querySelectorAll('.nav-link');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(sec => { if(pageYOffset >= sec.offsetTop - 60) current = sec.getAttribute('id'); });
+      navLinks.forEach(link => { link.classList.remove('active'); if(link.getAttribute('href') === '#' + current) link.classList.add('active'); });
+    });
+
+    const skillsSection = document.getElementById('experience');
+    const skillFills = document.querySelectorAll('.skill-fill');
+    const skillObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if(entry.isIntersecting) skillFills.forEach(f => f.style.width = f.getAttribute('data-fill')); });
+    }, { threshold: 0.5 });
+    skillObserver.observe(skillsSection);
+
+    document.getElementById('contact-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const { name, email, message } = e.target;
+      const mailtoLink = `mailto:nyabwariamos777@gmail.com?subject=Portfolio Contact from ${name.value}&body=${encodeURIComponent(message.value)}%0A%0AFrom: ${email.value}`;
+      window.open(mailtoLink, '_blank');
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
